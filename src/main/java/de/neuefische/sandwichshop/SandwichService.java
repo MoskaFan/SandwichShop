@@ -21,7 +21,10 @@ public class SandwichService {
     }
 
     public Sandwich saveSandwich(Sandwich sandwich) {
-        return sandwichRepo.saveSandwich(sandwich);
+        int number = getAllSandwiches().size()+1;
+        return sandwichRepo.saveSandwich(new Sandwich(String.valueOf(number), sandwich.getName(),
+                sandwich.getIngredients(), sandwich.getNumberOfCheeseLayers(),
+                sandwich.isBunIsGrilled()));
     }
 
     public Sandwich updateSandwich(Sandwich sandwich, String id) {

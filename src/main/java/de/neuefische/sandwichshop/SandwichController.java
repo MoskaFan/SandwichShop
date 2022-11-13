@@ -5,27 +5,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sandwich")
+@RequestMapping("/api")
 public class SandwichController {
 
     private SandwichService sandwichService;
-    @GetMapping
+
+    public SandwichController(SandwichService sandwichService) {
+        this.sandwichService = sandwichService;
+    }
+
+    @GetMapping("/sandwiches")
     public List<Sandwich> getAllSandwiches(){
         return sandwichService.getAllSandwiches();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/sandwiches/{id}")
     public Sandwich getSandwichById(@PathVariable String id){
         return sandwichService.getSandwichById(id);
     }
-    @PostMapping
+    @PostMapping("/sandwiches")
     public Sandwich saveSandwich(@RequestBody Sandwich sandwich){
         return sandwichService.saveSandwich(sandwich);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/sandwiches/{id}")
     public Sandwich updateSandwich(@RequestBody Sandwich sandwich, @PathVariable String id){
         return sandwichService.updateSandwich(sandwich, id);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/sandwiches/{id}")
     public boolean deleteSandwich(@RequestBody @PathVariable String id){
         return sandwichService.deleteSandwich(id);
     }

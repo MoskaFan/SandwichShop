@@ -2,13 +2,14 @@ package de.neuefische.sandwichshop;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class SandwichRepo {
     private List<Sandwich> sandwiches;
 
-    public SandwichRepo(List<Sandwich> sandwiches) {
-        this.sandwiches = sandwiches;
+    public SandwichRepo() {
+        sandwiches = new ArrayList<>();
     }
 
     public List<Sandwich> getSandwiches() {
@@ -23,6 +24,11 @@ public class SandwichRepo {
         return sandwiches;
     }
     public Sandwich saveSandwich(Sandwich sandwich){
+        for (Sandwich item:sandwiches) {
+            if(item.getId().equals(sandwich.getId())){
+                return item;
+            }
+        }
         sandwiches.add(sandwich);
         return sandwich;
     }

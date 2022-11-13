@@ -2,14 +2,17 @@ package de.neuefische.sandwichshop;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Sandwich {
     String id;
     String name;
-    List<Ingredient> ingredients;
+    List<String> ingredients;
     int numberOfCheeseLayers;
     boolean bunIsGrilled;
 }
